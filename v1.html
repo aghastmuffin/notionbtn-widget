@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prop-notion-btn</title>
+</head>
+<body>
+    <style>
+        .body {
+  position: relative;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border: 1px black solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* The blue rising background */
+.fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: blue;
+  height: 0%;
+  z-index: 0;
+  transition: height 0.3s ease;
+}
+
+button {
+  z-index: 1;
+  position: relative;
+  width: fit-content;
+  padding: 4px 8px;
+}
+.aligner {
+  display: flex;
+  column-gap: 20px;
+  border: 1px black solid;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+}
+    </style>
+    
+    <div class='aligner'>
+  <div class="body">
+    <div class="fill"></div>
+
+  </div>
+  <div class="data">
+  <b>Title</b>
+  <p id="counter"></p>
+  <button id="+">+</button>
+  <button id="-">-</button>
+  </div>
+</div>
+<script>
+const increm = document.getElementById("+");
+increm.addEventListener("click", click);
+
+const decrem = document.getElementById("-");
+decrem.addEventListener("click", clickdec);
+
+var prog = 0;
+var fin = 10;
+
+document.getElementById("counter").innerText = `${prog}/${fin}`;
+function click(){
+  if (prog < fin) {
+    prog++;
+  } else{
+    prog = 0;
+  }
+  document.querySelector(".fill").style.height = `${prog * fin}%`;
+  document.getElementById("counter").innerText = `${prog}/${fin}`;
+}
+function clickdec(){
+  if (prog > 0) {
+    prog--;
+    
+  } else{
+    prog = fin;
+  }
+  document.querySelector(".fill").style.height = `${prog * fin}%`;
+  document.getElementById("counter").innerText = `${prog}/${fin}`;
+}
+    </script>
+
+</body>
+</html>
